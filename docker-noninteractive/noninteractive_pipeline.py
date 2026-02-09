@@ -122,7 +122,7 @@ class RKLLMRemotePipeline:
         print(f"Building {self.model_name} with {self.qtype} quantization and optmization level {self.optimization}")
         status = self.rkllm.build(optimization_level=self.optimization, quantized_dtype=self.qtype, 
                                     target_platform=self.platform, num_npu_core=self.npu_cores, 
-                                    extra_qparams=self.qparams, dataset=self.dataset)
+                                    extra_qparams=self.qparams, dataset=self.dataset, max_context=16384)
         if status != 0:
             raise RuntimeError(f"Failed to build model: {status}")
         else:
